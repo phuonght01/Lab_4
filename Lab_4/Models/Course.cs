@@ -26,7 +26,7 @@ namespace Lab_4.Models
         public int Id { get; set; }
 
         public ApplicationUser Lecture { get; set; }
-
+        
         public string LecturerId { get; set; }
 
         public string Place { get; set; }
