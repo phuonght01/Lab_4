@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lab_4.ViewModels;
 using Lab_4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Lab_4.Controllers
 {
@@ -18,16 +19,35 @@ namespace Lab_4.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var viewModel = new CourseViewModel();
+
+            viewModel.Categories = _dbContext.categories.ToList();
+
+            return View(viewModel);
+        }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Create()
+        public ActionResult Create(CourseViewModel viewModel)
         {
-            var viewModel = new CourseViewModel();
-           
-           viewModel.Categories = _dbContext.categories.ToList();
+            if (!ModelState.IsValid)
+            {
+                var course = new Course()
+                {
+                    LecturerId = User.Identity.GetUserId(),
+                    DateTime = viewModel.GetDateTime(),
+                    CategoryId = viewModel.Category,
+                    Place = viewModel.Place
+                };
+                _dbContext.Courses.Add(course);
+                _dbContext.SaveChanges();
 
-           return View(viewModel);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
         }
     }
 }

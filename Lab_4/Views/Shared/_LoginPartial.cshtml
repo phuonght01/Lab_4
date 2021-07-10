@@ -5,12 +5,29 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <a class="dropdown-item">
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Cource I'm going</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Lectrure I'm Flowing</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    </li>
+                </div>
+            </div>
+        </ul>
     }
 }
 else
