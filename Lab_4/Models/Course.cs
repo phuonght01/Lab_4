@@ -34,6 +34,8 @@ namespace Lab_4.Models
         public DateTime DateTime { get; set; }
 
         public byte CategoryId { get; set; }
+
+        public Category Category { get; set; }
     }
 
     //public class MyEntity
