@@ -1,4 +1,5 @@
 ﻿using Lab_4.Models;
+using Lab_4.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,13 @@ namespace Lab_4.Controllers
                 .Include("Category")
                 .Where(c => c.DateTime > DateTime.Now);
 
-            return View(upCommingCourse);
+            CourseViewModel viewModel = new CourseViewModel
+            {
+                UpCommingCourses = upCommingCourse,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
         public HomeController()

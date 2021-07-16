@@ -20,6 +20,8 @@ namespace Lab_4.ViewModels
         [Required]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Course> UpCommingCourses { get; set; }
+        public bool ShowAction { get; set; }
 
         public DateTime GetDateTime()
         {
