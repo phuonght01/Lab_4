@@ -1,0 +1,38 @@
+﻿@model Lab_4.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "Attending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Attending</h2>
+<div class="row">
+    <ul style="list-style: none;">
+        @foreach (var course in Model.UpCommingCourses)
+        {
+            <li style="position: relative; margin-bottom: 30px">
+                <div class="date" style="text-align: center; background-color: #d41d50; color: white; width: 60px; border-radius: 8px;">
+                    <div class="month">
+                        @course.DateTime.ToString("MM")
+                    </div>
+                    <div class="day">
+                        @course.DateTime.ToString("dd")
+                    </div>
+                </div>
+                <div class="details" style="position: absolute; top: 0; left: 70px;">
+                    <span class="lecturer">
+                        @course.Lecture.Name
+                    </span>
+                    <br />
+                    <span class="category">
+                        @course.Category.name
+                    </span>
+                </div>
+                <div class="action" style="display: none; left: 70; position: absolute">
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+

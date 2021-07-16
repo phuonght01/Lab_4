@@ -49,5 +49,32 @@ namespace Lab_4.Controllers
             }
             return View();
         }
+
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var courses = _dbContext.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Course)
+                .Include("Lecture")
+                .Include("Category")
+                .ToList();
+
+            var viewModel = new CourseViewModel
+            {
+                UpCommingCourses = courses,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Mine()
+        {
+            return View();
+        }
     }
 }

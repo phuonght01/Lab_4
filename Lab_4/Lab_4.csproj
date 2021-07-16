@@ -301,6 +301,8 @@
       <BrowseToURL>~/Courses/Create</BrowseToURL>
     </Content>
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\Attending.cshtml" />
+    <Content Include="Views\Courses\Mine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
